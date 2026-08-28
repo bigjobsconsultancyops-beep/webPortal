@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0F2B4C"/>
+      <stop offset="1" stop-color="#1A3D6D"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#E8A838" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#E8A838" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1080" cy="90" r="320" fill="url(#glow)"/>
+
+  <!-- Logo mark -->
+  <g transform="translate(100 130)">
+    <rect width="96" height="96" rx="21" fill="#E8A838"/>
+    <g transform="translate(24 24) scale(2)" fill="none" stroke="#0F2B4C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="7" width="20" height="14" rx="2"/>
+      <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+      <path d="M12 12h.01"/>
+    </g>
+  </g>
+
+  <g font-family="DM Sans, Helvetica Neue, Helvetica, Arial, sans-serif">
+    <text x="100" y="310" fill="#FFFFFF" font-size="76" font-weight="800" letter-spacing="-1">Big Jobs Consultancy</text>
+    <text x="100" y="380" fill="#E8A838" font-size="34" font-weight="700" letter-spacing="4">CONNECTING TALENT WITH OPPORTUNITY</text>
+    <text x="100" y="470" fill="#FFFFFF" fill-opacity="0.75" font-size="30" font-weight="400">Recruitment, placement and career guidance across India.</text>
+    <text x="100" y="514" fill="#FFFFFF" fill-opacity="0.75" font-size="30" font-weight="400">Register once — we match you with the right employers.</text>
+  </g>
+
+  <rect x="100" y="560" width="120" height="6" rx="3" fill="#E8A838"/>
+</svg>

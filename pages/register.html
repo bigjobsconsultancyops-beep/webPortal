@@ -5,7 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register as Candidate — Big Jobs Consultancy</title>
   <meta name="description" content="Register your profile with Big Jobs Consultancy. Upload your resume and let us find the right job for you.">
+  <link rel="canonical" href="https://bigjobsconsultancy.in/pages/register.html">
+  <meta name="theme-color" content="#0F2B4C">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Big Jobs Consultancy">
+  <meta property="og:title" content="Register as Candidate — Big Jobs Consultancy">
+  <meta property="og:description" content="Register your profile with Big Jobs Consultancy. Upload your resume and let us find the right job for you.">
+  <meta property="og:url" content="https://bigjobsconsultancy.in/pages/register.html">
+  <meta property="og:image" content="https://bigjobsconsultancy.in/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -13,7 +28,7 @@
 
 <header class="site-header">
   <div class="container nav-wrap">
-    <a href="../index.html" class="logo"><span class="logo-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="12.01"/></svg></span> Big Jobs</a>
+    <a href="../index.html" class="logo"><span class="logo-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><path d="M12 12h.01"/></svg></span> Big Jobs</a>
     <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')"><span></span><span></span><span></span></button>
     <ul class="nav-links">
       <li><a href="../index.html">Home</a></li>
@@ -21,16 +36,16 @@
       <li><a href="jobs.html">Job Openings</a></li>
       <li><a href="employers.html">For Employers</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li class="nav-cta"><a href="register.html" class="btn btn-primary active" style="padding:8px 20px;">Register Now</a></li>
+      <li class="nav-cta"><a href="register.html" class="btn btn-primary btn-sm active">Register Now</a></li>
     </ul>
   </div>
 </header>
 
-<section style="background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%); color: white; padding: 60px 0; text-align: center;">
+<section class="page-hero">
   <div class="container">
-    <span class="section-label" style="color: var(--amber);">Get Started</span>
-    <h1 style="color: white;">Register as a Candidate</h1>
-    <p style="color: rgba(255,255,255,0.75); max-width: 500px; margin: 12px auto 0;">Fill in your details below and upload your resume. We'll match you with the right opportunities.</p>
+    <span class="section-label">Get Started</span>
+    <h1>Register as a Candidate</h1>
+    <p class="lead">Fill in your details below and upload your resume. We'll match you with the right opportunities.</p>
   </div>
 </section>
 
@@ -54,7 +69,7 @@
         <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
         <input type="hidden" name="subject" value="New Candidate Registration — Big Jobs Consultancy">
         <input type="hidden" name="from_name" value="Big Jobs Website">
-        <input type="checkbox" name="botcheck" style="display:none;">
+        <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off">
 
         <div class="form-grid">
           <div class="form-group">
@@ -103,10 +118,14 @@
             <input type="text" id="skills" name="Skills" placeholder="e.g. accounting, data entry, welding, driving, sales">
           </div>
           <div class="form-group full">
-            <label>Upload Resume (PDF or DOC, max 5 MB) *</label>
+            <label for="resume">Upload Resume (PDF or DOC, max 5 MB) *</label>
             <label class="file-upload" id="fileLabel">
               <input type="file" id="resume" name="Resume" accept=".pdf,.doc,.docx" required>
-              <span class="upload-label">📎 <strong>Click to upload</strong> or drag your file here<br><small>PDF, DOC, or DOCX — max 5 MB</small></span>
+              <span class="upload-label">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+                <span><strong>Click to upload</strong> or choose a file</span>
+                <span class="upload-hint">PDF, DOC, or DOCX — max 5 MB</span>
+              </span>
             </label>
           </div>
           <div class="form-group full">
@@ -116,7 +135,7 @@
         </div>
 
         <div class="form-submit">
-          <button type="submit" class="btn btn-primary" id="submitBtn" style="min-width: 200px; justify-content: center;">Submit Registration</button>
+          <button type="submit" class="btn btn-primary btn-wide" id="submitBtn">Submit Registration</button>
         </div>
       </form>
 
@@ -128,9 +147,9 @@
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand"><a href="../index.html" class="logo"><span class="logo-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="12.01"/></svg></span> Big Jobs</a><p>Professional job consultancy dedicated to connecting talented candidates with the right employment opportunities.</p></div>
+      <div class="footer-brand"><a href="../index.html" class="logo"><span class="logo-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><path d="M12 12h.01"/></svg></span> Big Jobs</a><p>Professional job consultancy dedicated to connecting talented candidates with the right employment opportunities.</p></div>
       <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="about.html">About Us</a></li><li><a href="jobs.html">Job Openings</a></li><li><a href="register.html">Register</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-      <div class="footer-col"><h4>Services</h4><ul><li><a href="#">Job Placement</a></li><li><a href="#">Resume Guidance</a></li><li><a href="#">Interview Prep</a></li><li><a href="#">Manpower Recruitment</a></li></ul></div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="jobs.html">Job Placement</a></li><li><a href="about.html">Resume Guidance</a></li><li><a href="about.html">Interview Prep</a></li><li><a href="employers.html">Manpower Recruitment</a></li></ul></div>
       <div class="footer-col"><h4>Contact</h4><ul><li><a href="mailto:info@bigjobsconsultancy.com">info@bigjobsconsultancy.com</a></li><li><a href="tel:+91XXXXXXXXXX">+91-XXXXX XXXXX</a></li><li>Your City, India</li></ul></div>
     </div>
     <div class="footer-bottom"><span>&copy; 2026 Big Jobs Consultancy. All rights reserved.</span><span>Designed with care for job seekers everywhere.</span></div>
@@ -138,10 +157,17 @@
 </footer>
 
 <a href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20I%20want%20to%20register%20as%20a%20candidate." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.088.534 4.052 1.475 5.765L.058 23.611a.5.5 0 00.609.609l5.846-1.417A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.94 9.94 0 01-5.39-1.584l-.386-.233-3.466.84.84-3.466-.233-.386A9.94 9.94 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.088.534 4.052 1.475 5.765L.058 23.611a.5.5 0 00.609.609l5.846-1.417A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.94 9.94 0 01-5.39-1.584l-.386-.233-3.466.84.84-3.466-.233-.386A9.94 9.94 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
 </a>
 
 <script>
+const ICON_CLIP = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>';
+const ICON_OK = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>';
+const ICON_ERR = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>';
+const UPLOAD_DEFAULT = ICON_CLIP +
+  '<span><strong>Click to upload</strong> or choose a file</span>' +
+  '<span class="upload-hint">PDF, DOC, or DOCX — max 5 MB</span>';
+
 // Show file name on upload
 document.getElementById('resume').addEventListener('change', function() {
   const label = document.querySelector('#fileLabel .upload-label');
@@ -150,9 +176,12 @@ document.getElementById('resume').addEventListener('change', function() {
     if (file.size > 5 * 1024 * 1024) {
       alert('File is too large. Please upload a file under 5 MB.');
       this.value = '';
+      label.innerHTML = UPLOAD_DEFAULT;
       return;
     }
-    label.innerHTML = `📎 <strong>${file.name}</strong> (${(file.size / 1024).toFixed(0)} KB)`;
+    label.innerHTML = ICON_CLIP + '<span><strong>' + file.name + '</strong> (' + (file.size / 1024).toFixed(0) + ' KB)</span>';
+  } else {
+    label.innerHTML = UPLOAD_DEFAULT;
   }
 });
 
@@ -164,22 +193,21 @@ document.getElementById('regForm').addEventListener('submit', async function(e) 
   btn.textContent = 'Submitting…';
   btn.disabled = true;
   msg.className = 'form-msg';
-  msg.style.display = 'none';
 
   try {
     const formData = new FormData(this);
     const res = await fetch(this.action, { method: 'POST', body: formData });
     const data = await res.json();
     if (data.success) {
-      msg.textContent = '✅ Registration submitted successfully! We will contact you soon.';
+      msg.innerHTML = ICON_OK + '<span>Registration submitted successfully! We will contact you soon.</span>';
       msg.className = 'form-msg success';
       this.reset();
-      document.querySelector('#fileLabel .upload-label').innerHTML = '📎 <strong>Click to upload</strong> or drag your file here<br><small>PDF, DOC, or DOCX — max 5 MB</small>';
+      document.querySelector('#fileLabel .upload-label').innerHTML = UPLOAD_DEFAULT;
     } else {
       throw new Error(data.message || 'Submission failed');
     }
   } catch (err) {
-    msg.textContent = '❌ Something went wrong. Please try again or contact us via WhatsApp.';
+    msg.innerHTML = ICON_ERR + '<span>Something went wrong. Please try again or contact us via WhatsApp.</span>';
     msg.className = 'form-msg error';
   }
   btn.textContent = 'Submit Registration';

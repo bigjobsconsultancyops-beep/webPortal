@@ -5,7 +5,10 @@
 ```
 bigjobs/
 ├── index.html              ← Home page
-├── css/style.css           ← All styling
+├── favicon.svg             ← Browser tab icon
+├── og-image.svg            ← Source for the social-share card
+├── og-image.jpg            ← Social-share card (1200×630, generated from the SVG)
+├── css/style.css           ← All styling + design tokens
 ├── pages/
 │   ├── about.html          ← About us
 │   ├── jobs.html           ← Job listings (pulls from Google Sheets)
@@ -13,6 +16,36 @@ bigjobs/
 │   ├── employers.html      ← For employers + inquiry form
 │   └── contact.html        ← Contact info + form + map
 └── SETUP-GUIDE.md          ← This file
+```
+
+## Design System
+
+All styling lives in `css/style.css`. Before changing spacing, colors, or corner
+radii, look at the `:root` block at the top — everything is driven by tokens:
+
+| Token group | Variables | Use for |
+|---|---|---|
+| Color | `--navy`, `--amber`, `--text-muted`, `--border`, … | All colors |
+| Spacing | `--space-1` … `--space-20` (4px base) | Every margin, padding, and gap |
+| Radii | `--radius-sm/md/lg/xl/full` | Every rounded corner |
+| Elevation | `--shadow-sm/md/lg` | Every box-shadow |
+
+**Rule of thumb: no inline `style=""` attributes in the HTML.** Repeated blocks
+already have classes — `.page-hero` (interior page headers), `.cta-band`
+(navy call-to-action strips), `.section-head` (centered label + title + subtitle),
+`.steps-grid` (numbered 1-2-3 cards), `.btn-sm` / `.btn-wide` (button sizes).
+Add a class to the stylesheet rather than a one-off inline style.
+
+### Icons
+
+Icons are inline SVG in the [Lucide](https://lucide.dev) line style, all carrying
+`class="icon"` (or `icon-lg`). They inherit color from their parent via
+`currentColor` and are sized by CSS, so **do not use emoji as icons** — they
+render differently on every device and break the visual system. To add one, copy
+the paths from lucide.dev into:
+
+```html
+<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><!-- paths here --></svg>
 ```
 
 ---
@@ -112,6 +145,30 @@ Search and replace these placeholders across all HTML files:
 | `YOUR_ACCESS_KEY_HERE` | Your Web3Forms access key |
 | Google Maps iframe | Your actual Google Maps embed (search your address on maps.google.com → Share → Embed) |
 | Stats (500+, 50+, 15+) | Your actual numbers (or keep as aspirational) |
+| `https://bigjobsconsultancy.in` | Your live domain — appears in each page's `<link rel="canonical">` and `og:` tags |
+
+### Social share card
+
+Every page points `og:image` at `/og-image.jpg` (1200×630), which is what shows up
+when someone shares a link on WhatsApp, LinkedIn, or Facebook. To change the
+wording or colors, edit `og-image.svg` and regenerate the JPEG:
+
+```bash
+sips -s format jpeg -s formatOptions 88 og-image.svg --out og-image.jpg
+```
+
+After editing, re-scrape the page at https://developers.facebook.com/tools/debug/
+so the old image isn't served from cache.
+
+### Optional: PNG fallback icons
+
+`favicon.svg` covers modern browsers. For older browsers and iOS home-screen
+icons, export a 180×180 PNG of the same mark, save it as `apple-touch-icon.png`
+in the project root, and add this line to each page's `<head>`:
+
+```html
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+```
 
 ---
 
