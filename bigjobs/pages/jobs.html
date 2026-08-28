@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Openings — Big Jobs Consultancy</title>
+  <meta name="description" content="Browse current job openings across industries. Register to apply through Big Jobs Consultancy.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a href="../index.html" class="logo"><span class="logo-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="12.01"/></svg></span> Big Jobs</a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')"><span></span><span></span><span></span></button>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="jobs.html" class="active">Job Openings</a></li>
+      <li><a href="employers.html">For Employers</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li class="nav-cta"><a href="register.html" class="btn btn-primary" style="padding:8px 20px;">Register Now</a></li>
+    </ul>
+  </div>
+</header>
+
+<section style="background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%); color: white; padding: 60px 0; text-align: center;">
+  <div class="container">
+    <span class="section-label" style="color: var(--amber);">Opportunities</span>
+    <h1 style="color: white;">Current Job Openings</h1>
+    <p style="color: rgba(255,255,255,0.75); max-width: 500px; margin: 12px auto 0;">Browse available positions below. New jobs are added regularly — register to get notified.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <!-- Search & Filter -->
+    <div class="jobs-toolbar">
+      <input type="text" id="jobSearch" placeholder="Search by title, company, or location…">
+      <select id="jobFilter">
+        <option value="">All Categories</option>
+      </select>
+    </div>
+
+    <!-- Jobs container -->
+    <div id="jobsList" class="jobs-list">
+      <div class="jobs-loading">Loading job listings…</div>
+    </div>
+
+    <div id="jobsEmpty" class="jobs-empty" style="display:none;">
+      <h3>No openings match your search</h3>
+      <p>Try a different keyword or category. New jobs are added regularly.</p>
+      <a href="register.html" class="btn btn-primary mt-20">Register to Get Notified</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section section-alt" style="text-align: center;">
+  <div class="container">
+    <h2>Don't see the right fit?</h2>
+    <p style="color: var(--text-muted); max-width: 480px; margin: 8px auto 28px;">Register your profile and we'll reach out when a matching opportunity opens up.</p>
+    <a href="register.html" class="btn btn-navy">Register Now</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><a href="../index.html" class="logo"><span class="logo-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="12.01"/></svg></span> Big Jobs</a><p>Professional job consultancy dedicated to connecting talented candidates with the right employment opportunities.</p></div>
+      <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="about.html">About Us</a></li><li><a href="jobs.html">Job Openings</a></li><li><a href="register.html">Register</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="#">Job Placement</a></li><li><a href="#">Resume Guidance</a></li><li><a href="#">Interview Prep</a></li><li><a href="#">Manpower Recruitment</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul><li><a href="mailto:info@bigjobsconsultancy.com">info@bigjobsconsultancy.com</a></li><li><a href="tel:+91XXXXXXXXXX">+91-XXXXX XXXXX</a></li><li>Your City, India</li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2026 Big Jobs Consultancy. All rights reserved.</span><span>Designed with care for job seekers everywhere.</span></div>
+  </div>
+</footer>
+
+<a href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20I%20am%20interested%20in%20a%20job%20opening." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.088.534 4.052 1.475 5.765L.058 23.611a.5.5 0 00.609.609l5.846-1.417A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.94 9.94 0 01-5.39-1.584l-.386-.233-3.466.84.84-3.466-.233-.386A9.94 9.94 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+</a>
+
+<script>
+/*
+ * ===== GOOGLE SHEETS INTEGRATION =====
+ * 
+ * HOW TO SET UP:
+ * 1. Create a Google Sheet with these columns (Row 1 = headers):
+ *    A: Title | B: Company | C: Location | D: Category | E: Type | F: Salary | G: Posted
+ *
+ * 2. Add job listings in the rows below.
+ *
+ * 3. Go to File → Share → Publish to web → Select "Sheet1" → Format: CSV → Publish
+ *
+ * 4. Copy the published URL and paste it below replacing SHEET_CSV_URL.
+ *
+ * 5. Every time you update the sheet, the website automatically shows the latest jobs.
+ */
+
+const SHEET_CSV_URL = ''; // ← Paste your published Google Sheet CSV URL here
+
+// Sample data used when no Google Sheet is connected
+const SAMPLE_JOBS = [
+  { title: 'Warehouse Supervisor', company: 'Metro Logistics', location: 'Delhi NCR', category: 'Operations', type: 'Full-Time', salary: '₹18,000 – ₹25,000/mo', posted: '2026-08-25' },
+  { title: 'Accounts Executive', company: 'Sharma & Co.', location: 'Noida', category: 'Finance', type: 'Full-Time', salary: '₹20,000 – ₹30,000/mo', posted: '2026-08-23' },
+  { title: 'Data Entry Operator', company: 'InfoTech Solutions', location: 'Ghaziabad', category: 'Admin', type: 'Full-Time', salary: '₹12,000 – ₹18,000/mo', posted: '2026-08-22' },
+  { title: 'Store Manager', company: 'RetailMax', location: 'Greater Noida', category: 'Retail', type: 'Full-Time', salary: '₹22,000 – ₹35,000/mo', posted: '2026-08-20' },
+  { title: 'Electrician', company: 'BuildRight Construction', location: 'Delhi NCR', category: 'Skilled Trade', type: 'Contract', salary: '₹600 – ₹900/day', posted: '2026-08-18' },
+  { title: 'Receptionist', company: 'Sunrise Hospital', location: 'Noida', category: 'Healthcare', type: 'Full-Time', salary: '₹14,000 – ₹20,000/mo', posted: '2026-08-15' },
+];
+
+let allJobs = [];
+
+function parseCSV(text) {
+  const lines = text.trim().split('\n');
+  const headers = lines[0].split(',').map(h => h.trim().replace(/"/g, ''));
+  return lines.slice(1).map(line => {
+    // Handle commas inside quotes
+    const values = [];
+    let current = '';
+    let inQuotes = false;
+    for (const char of line) {
+      if (char === '"') { inQuotes = !inQuotes; }
+      else if (char === ',' && !inQuotes) { values.push(current.trim()); current = ''; }
+      else { current += char; }
+    }
+    values.push(current.trim());
+    return {
+      title: values[0] || '',
+      company: values[1] || '',
+      location: values[2] || '',
+      category: values[3] || '',
+      type: values[4] || '',
+      salary: values[5] || '',
+      posted: values[6] || '',
+    };
+  }).filter(j => j.title);
+}
+
+function renderJobs(jobs) {
+  const list = document.getElementById('jobsList');
+  const empty = document.getElementById('jobsEmpty');
+  if (jobs.length === 0) {
+    list.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  list.innerHTML = jobs.map(j => `
+    <div class="job-card">
+      <div>
+        <div class="job-title">${j.title}</div>
+        <div class="job-meta">
+          <span>🏢 ${j.company}</span>
+          <span>📍 ${j.location}</span>
+          ${j.salary ? `<span>💰 ${j.salary}</span>` : ''}
+          ${j.type ? `<span>📌 ${j.type}</span>` : ''}
+        </div>
+        ${j.category ? `<span class="job-tag">${j.category}</span>` : ''}
+      </div>
+      <a href="register.html" class="btn btn-navy" style="white-space:nowrap;">Apply Now</a>
+    </div>
+  `).join('');
+}
+
+function populateFilter(jobs) {
+  const sel = document.getElementById('jobFilter');
+  const cats = [...new Set(jobs.map(j => j.category).filter(Boolean))].sort();
+  cats.forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c; opt.textContent = c;
+    sel.appendChild(opt);
+  });
+}
+
+function filterJobs() {
+  const q = document.getElementById('jobSearch').value.toLowerCase();
+  const cat = document.getElementById('jobFilter').value;
+  const filtered = allJobs.filter(j => {
+    const matchText = !q || [j.title, j.company, j.location].some(v => v.toLowerCase().includes(q));
+    const matchCat = !cat || j.category === cat;
+    return matchText && matchCat;
+  });
+  renderJobs(filtered);
+}
+
+async function loadJobs() {
+  if (SHEET_CSV_URL) {
+    try {
+      const res = await fetch(SHEET_CSV_URL);
+      const text = await res.text();
+      allJobs = parseCSV(text);
+    } catch (e) {
+      console.error('Failed to load Google Sheet, using sample data', e);
+      allJobs = SAMPLE_JOBS;
+    }
+  } else {
+    allJobs = SAMPLE_JOBS;
+  }
+  renderJobs(allJobs);
+  populateFilter(allJobs);
+}
+
+document.getElementById('jobSearch').addEventListener('input', filterJobs);
+document.getElementById('jobFilter').addEventListener('change', filterJobs);
+
+loadJobs();
+</script>
+
+</body>
+</html>
