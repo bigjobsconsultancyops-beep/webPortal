@@ -8,8 +8,9 @@
   --navy:      #0F2B4C;
   --navy-mid:  #1A3D6D;
   --navy-light:#E8EDF4;
-  --amber:     #E8A838;
-  --amber-dark:#C98B1E;
+  --amber:     #E8A838;  /* fills and text on navy only — 1.9:1 on white, never body text */
+  --amber-dark:#C98B1E;  /* button hover fill (pair with navy text, not white) */
+  --amber-ink: #8A5D0F;  /* the accent for TEXT/ICONS on light surfaces — 5.8:1 on white */
   --amber-light:#FFF4DE;
   --text:      #1A1A2E;
   --text-muted:#5A6578;
@@ -55,6 +56,10 @@
   --max-w-prose:  640px;
 
   --font: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+
+  /* Motion */
+  --ease: cubic-bezier(.2, .7, .3, 1);
 }
 
 html { scroll-behavior: smooth; }
@@ -69,9 +74,23 @@ body {
 }
 
 a { color: var(--navy-mid); text-decoration: none; transition: color .2s; }
-a:hover { color: var(--amber-dark); }
+a:hover { color: var(--amber-ink); }
 
 img { max-width: 100%; display: block; }
+
+/* --- Focus ---
+   Navy ring on light surfaces (14:1), amber on dark (6.9:1) — WCAG 2.2 wants the
+   indicator itself to clear 3:1 against what's behind it. */
+:focus-visible {
+  outline: 3px solid var(--navy);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+.hero :focus-visible,
+.page-hero :focus-visible,
+.cta-band :focus-visible,
+.site-footer :focus-visible,
+.whatsapp-float:focus-visible { outline-color: var(--amber); }
 
 .container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--space-6); }
 .container--narrow { max-width: var(--max-w-narrow); }
@@ -89,11 +108,20 @@ img { max-width: 100%; display: block; }
 }
 .icon-lg { width: 24px; height: 24px; }
 
-/* --- Typography --- */
+/* --- Typography ---
+   Fraunces (display serif) carries h1/h2; DM Sans keeps h3/h4, UI and body. */
 h1, h2, h3, h4 { font-weight: 700; line-height: 1.25; color: var(--navy); }
-h1 { font-size: clamp(2rem, 5vw, 3rem); }
-h2 { font-size: clamp(1.5rem, 3.5vw, 2.25rem); }
-h3 { font-size: 1.25rem; }
+
+h1, h2 {
+  font-family: var(--font-display);
+  font-variation-settings: 'SOFT' 20, 'WONK' 1;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+h1 { font-size: clamp(2.5rem, 6vw, 4rem); }
+h2 { font-size: clamp(1.75rem, 3.8vw, 2.6rem); }
+h3 { font-size: 1.25rem; text-wrap: balance; }
 p  { margin-bottom: var(--space-4); }
 
 .section-label {
@@ -102,7 +130,7 @@ p  { margin-bottom: var(--space-4); }
   font-weight: 700;
   letter-spacing: .12em;
   text-transform: uppercase;
-  color: var(--amber-dark);
+  color: var(--amber-ink);
   margin-bottom: var(--space-2);
 }
 
@@ -128,14 +156,16 @@ p  { margin-bottom: var(--space-4); }
   cursor: pointer;
   border: 2px solid transparent;
   white-space: nowrap;
-  transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease, transform .1s ease;
 }
+.btn:active { transform: translateY(1px); }
 
 .btn-primary {
   background: var(--amber);
   color: var(--navy);
 }
-.btn-primary:hover { background: var(--amber-dark); color: var(--white); }
+/* Navy text stays put on hover — white on amber-dark is only 2.9:1 */
+.btn-primary:hover { background: var(--amber-dark); color: var(--navy); }
 
 .btn-outline {
   background: transparent;
@@ -203,9 +233,8 @@ p  { margin-bottom: var(--space-4); }
 }
 /* The Register CTA keeps its button styling in both states */
 .nav-links .btn-primary,
-.nav-links .btn-primary:hover,
 .nav-links .btn-primary.active { color: var(--navy); background: var(--amber); }
-.nav-links .btn-primary:hover { background: var(--amber-dark); color: var(--white); }
+.nav-links .btn-primary:hover { background: var(--amber-dark); color: var(--navy); }
 
 .nav-cta { margin-left: var(--space-2); }
 
@@ -225,6 +254,11 @@ p  { margin-bottom: var(--space-4); }
 .nav-toggle span:nth-child(2) { top: 15px; }
 .nav-toggle span:nth-child(3) { top: 22px; }
 
+/* Hamburger morphs into an X, driven by the button's own aria state */
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { top: 15px; transform: rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { top: 15px; transform: rotate(-45deg); }
+
 @media (max-width: 768px) {
   .nav-toggle { display: block; }
   .nav-links {
@@ -237,7 +271,9 @@ p  { margin-bottom: var(--space-4); }
     box-shadow: var(--shadow-md);
   }
   .nav-links.open { display: flex; }
+  .nav-links a { padding: var(--space-3); }
   .nav-cta { margin-left: 0; margin-top: var(--space-2); }
+  .nav-links .btn { justify-content: center; }
 }
 
 /* --- Hero (home) --- */
@@ -257,17 +293,13 @@ p  { margin-bottom: var(--space-4); }
   border-radius: 50%;
 }
 
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-15);
-  align-items: center;
-  position: relative;
-  z-index: 1;
-}
+.hero-copy { position: relative; z-index: 1; max-width: 760px; }
 
 .hero h1 { color: var(--white); margin-bottom: var(--space-5); }
-.hero p { color: rgba(255,255,255,0.8); font-size: 1.1rem; margin-bottom: var(--space-8); max-width: 480px; }
+.hero p { color: rgba(255,255,255,0.8); font-size: 1.15rem; margin-bottom: var(--space-8); max-width: 560px; }
+
+/* --- Stats strip — floats over the hero's bottom edge --- */
+.stats-strip { position: relative; z-index: 2; margin-top: -56px; }
 
 .hero-stats {
   display: grid;
@@ -276,34 +308,43 @@ p  { margin-bottom: var(--space-4); }
 }
 
 .stat-card {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: var(--white);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: var(--space-7) var(--space-5);
   text-align: center;
+  box-shadow: var(--shadow-lg);
 }
 
 .stat-card .num {
   display: block;
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--amber);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  color: var(--navy);
   line-height: 1.1;
+  font-variant-numeric: tabular-nums;
 }
 
 .stat-card .label {
   display: block;
-  font-size: .82rem;
-  color: rgba(255,255,255,0.65);
+  font-size: .875rem;
+  font-weight: 500;
+  color: var(--text-muted);
   margin-top: var(--space-1);
 }
 
 @media (max-width: 768px) {
-  .hero { padding: var(--space-12) 0 var(--space-15); }
-  .hero-grid { grid-template-columns: 1fr; gap: var(--space-10); }
-  .hero-stats { grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
-  .stat-card { padding: var(--space-4) var(--space-3); }
-  .stat-card .num { font-size: 1.5rem; }
+  .hero { padding: var(--space-12) 0 90px; }
+  .hero-stats { gap: var(--space-3); }
+  .stat-card { padding: var(--space-5) var(--space-2); }
+}
+
+@media (max-width: 480px) {
+  .stats-strip { margin-top: -40px; }
+  .hero-stats { grid-template-columns: 1fr; gap: var(--space-3); }
+  .stat-card { display: flex; align-items: baseline; justify-content: center; gap: var(--space-2); }
+  .stat-card .label { margin-top: 0; }
 }
 
 /* --- Page hero (interior page header) --- */
@@ -345,11 +386,20 @@ p  { margin-bottom: var(--space-4); }
   .page-hero { padding: var(--space-10) 0; }
 }
 
-/* --- Services Grid --- */
+/* --- Services Grid ---
+   Explicit columns, not auto-fit: auto-fit stranded a lone card on its own row
+   at tablet widths. */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-6);
+}
+
+@media (max-width: 1024px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .services-grid { grid-template-columns: 1fr; }
 }
 
 .service-card {
@@ -367,7 +417,7 @@ p  { margin-bottom: var(--space-4); }
 .service-icon {
   width: 48px; height: 48px;
   background: var(--amber-light);
-  color: var(--amber-dark);
+  color: var(--amber-ink);
   border-radius: var(--radius-md);
   display: flex; align-items: center; justify-content: center;
   margin-bottom: var(--space-5);
@@ -395,13 +445,34 @@ p  { margin-bottom: var(--space-4); }
   margin-right: auto;
 }
 
-/* --- Why Choose Us --- */
+/* --- Why Choose Us ---
+   Asymmetric split: the heading sticks in the left rail while the reasons
+   scroll past it, breaking the centered-header-then-grid rhythm. */
+.split {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: var(--space-16);
+  align-items: start;
+}
+
+.split-aside { position: sticky; top: 110px; }
+.split-aside .section-title { margin-bottom: var(--space-4); }
+.split-aside p { color: var(--text-muted); margin-bottom: 0; }
+
 .reasons-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-5);
 }
 .reasons-grid--narrow { max-width: var(--max-w-mid); margin: 0 auto; }
+
+@media (max-width: 900px) {
+  .split { grid-template-columns: 1fr; gap: var(--space-10); }
+  .split-aside { position: static; }
+}
+@media (max-width: 640px) {
+  .reasons-grid { grid-template-columns: 1fr; }
+}
 
 .reason-item {
   display: flex; gap: var(--space-3); align-items: flex-start;
@@ -436,12 +507,16 @@ p  { margin-bottom: var(--space-4); }
   border-radius: var(--radius-md);
   font-family: var(--font);
   font-size: .9rem;
-  background: var(--white);
-  outline: none;
-  transition: border-color .2s;
+  color: var(--text);
+  background-color: var(--white);
+  transition: border-color .2s, box-shadow .2s;
 }
 .jobs-toolbar input:focus,
-.jobs-toolbar select:focus { border-color: var(--navy-mid); }
+.jobs-toolbar select:focus {
+  outline: none;
+  border-color: var(--navy-mid);
+  box-shadow: 0 0 0 3px rgba(26,61,109,0.18);
+}
 
 .jobs-toolbar input { flex: 1; min-width: 200px; }
 
@@ -474,7 +549,7 @@ p  { margin-bottom: var(--space-4); }
   display: inline-block;
   padding: 3px var(--space-2);
   background: var(--amber-light);
-  color: var(--amber-dark);
+  color: var(--amber-ink);
   border-radius: var(--radius-full);
   font-size: .75rem;
   font-weight: 600;
@@ -527,16 +602,28 @@ p  { margin-bottom: var(--space-4); }
   border-radius: var(--radius-md);
   font-family: var(--font);
   font-size: .92rem;
-  outline: none;
+  color: var(--text);
   transition: border-color .2s, box-shadow .2s;
-  background: var(--bg);
+  background-color: var(--bg);
 }
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
+  outline: none;
   border-color: var(--navy-mid);
-  box-shadow: 0 0 0 3px rgba(26,61,109,0.08);
-  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(26,61,109,0.18);
+  background-color: var(--white);
+}
+
+/* Native selects don't match the custom inputs — replace the OS chevron */
+.form-group select,
+.jobs-toolbar select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235A6578' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-3) center;
+  background-size: 16px 16px;
+  padding-right: var(--space-10);
 }
 
 .form-group textarea { resize: vertical; min-height: 100px; }
@@ -604,7 +691,7 @@ p  { margin-bottom: var(--space-4); }
 .contact-icon {
   width: 44px; height: 44px;
   background: var(--amber-light);
-  color: var(--amber-dark);
+  color: var(--amber-ink);
   border-radius: var(--radius-md);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
@@ -660,7 +747,10 @@ p  { margin-bottom: var(--space-4); }
 
 @media (max-width: 768px) {
   .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--space-8); }
-  .footer-bottom { flex-direction: column; gap: var(--space-2); }
+  .footer-bottom { flex-direction: column; gap: var(--space-2); text-align: center; }
+}
+@media (max-width: 480px) {
+  .footer-grid { grid-template-columns: 1fr; gap: var(--space-6); }
 }
 
 /* --- WhatsApp Float --- */
@@ -676,6 +766,38 @@ p  { margin-bottom: var(--space-4); }
 }
 .whatsapp-float:hover { transform: scale(1.08); }
 .whatsapp-float svg { width: 28px; height: 28px; fill: var(--white); }
+
+/* --- Scroll reveal ---
+   Guarded on .js (set by an inline snippet in <head>) so the content is never
+   left invisible if the script fails or is blocked. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .6s var(--ease), transform .6s var(--ease);
+  will-change: opacity, transform;
+}
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* --- Large desktop --- */
+@media (min-width: 1440px) {
+  .section { padding: 100px 0; }
+  .hero { padding: 110px 0 120px; }
+}
+
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 
 /* --- Utilities --- */
 .mt-5 { margin-top: var(--space-5); }

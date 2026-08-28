@@ -21,16 +21,26 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
+  <!-- Turns the scroll-reveal styles on, then back off at load time if main.js
+       never ran (blocked, 404, parse error) — revealed content must never be
+       left permanently invisible. Inline and before paint by design. -->
+  <script>
+    document.documentElement.classList.add('js');
+    addEventListener('load', function () {
+      if (!window.__bjc) document.documentElement.classList.remove('js');
+    });
+  </script>
+  <script src="../js/main.js" defer></script>
 </head>
 <body>
 
 <header class="site-header">
   <div class="container nav-wrap">
     <a href="../index.html" class="logo"><span class="logo-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><path d="M12 12h.01"/></svg></span> Big Jobs</a>
-    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')"><span></span><span></span><span></span></button>
-    <ul class="nav-links">
+    <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="primary-nav">
       <li><a href="../index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="jobs.html">Job Openings</a></li>
@@ -57,28 +67,28 @@
       <h2 class="section-title">Staffing Solutions for Every Need</h2>
     </div>
     <div class="services-grid">
-      <div class="service-card">
+      <div class="service-card reveal">
         <div class="service-icon">
           <svg class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m16 11 2 2 4-4"/></svg>
         </div>
         <h3>Permanent Hiring</h3>
         <p>Full-time placements matched to your role requirements, culture, and budget.</p>
       </div>
-      <div class="service-card">
+      <div class="service-card reveal">
         <div class="service-icon">
           <svg class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
         </div>
         <h3>Temporary &amp; Contract Staff</h3>
         <p>Short-term and project-based manpower — onboarded quickly, managed cleanly.</p>
       </div>
-      <div class="service-card">
+      <div class="service-card reveal">
         <div class="service-icon">
           <svg class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1z"/><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5"/><path d="M4 15v-3a6 6 0 0 1 6-6"/><path d="M14 6a6 6 0 0 1 6 6v3"/></svg>
         </div>
         <h3>Bulk / Blue-Collar Recruitment</h3>
         <p>Large-volume hiring for factory, warehouse, construction, and field operations.</p>
       </div>
-      <div class="service-card">
+      <div class="service-card reveal">
         <div class="service-icon">
           <svg class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
         </div>
@@ -97,17 +107,17 @@
       <h2 class="section-title">Hiring in Three Steps</h2>
     </div>
     <div class="steps-grid">
-      <div class="service-card step-card">
+      <div class="service-card step-card reveal">
         <div class="service-icon">1</div>
         <h3>Share Your Requirement</h3>
         <p>Tell us the role, skills, experience level, and number of positions you need filled.</p>
       </div>
-      <div class="service-card step-card">
+      <div class="service-card step-card reveal">
         <div class="service-icon">2</div>
         <h3>We Source &amp; Screen</h3>
         <p>We shortlist qualified candidates from our registered pool and present them to you.</p>
       </div>
-      <div class="service-card step-card">
+      <div class="service-card step-card reveal">
         <div class="service-icon">3</div>
         <h3>Interview &amp; Hire</h3>
         <p>You interview the shortlisted candidates. We coordinate scheduling and follow-up.</p>

@@ -9,6 +9,7 @@ bigjobs/
 ├── og-image.svg            ← Source for the social-share card
 ├── og-image.jpg            ← Social-share card (1200×630, generated from the SVG)
 ├── css/style.css           ← All styling + design tokens
+├── js/main.js              ← Mobile nav, stat count-up, scroll reveal
 ├── pages/
 │   ├── about.html          ← About us
 │   ├── jobs.html           ← Job listings (pulls from Google Sheets)
@@ -47,6 +48,56 @@ the paths from lucide.dev into:
 ```html
 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><!-- paths here --></svg>
 ```
+
+### Typography
+
+Two families, loaded in one Google Fonts request:
+
+- **Fraunces** (serif) — `h1` and `h2` only, via `--font-display`.
+- **DM Sans** — everything else: `h3`/`h4`, body, buttons, form fields.
+
+Don't push Fraunces down into body text or UI labels; the contrast between the
+two is what stops the page reading like a stock template.
+
+### Color and contrast
+
+The amber has **three** tokens and they are not interchangeable:
+
+| Token | Value | Use it for | Never |
+|---|---|---|---|
+| `--amber` | `#E8A838` | Button fills, text/icons **on navy** | Text on white (1.9:1) |
+| `--amber-dark` | `#C98B1E` | The `btn-primary` hover fill only | White text on top (2.9:1) |
+| `--amber-ink` | `#8A5D0F` | Text and icons on white/`--amber-light` | — |
+
+Every text pair on the site clears WCAG AA (4.5:1) and every focus ring clears
+3:1. If you introduce a new accent, check it before shipping — the earlier
+palette failed in three places, all of them with the mid-amber on a light
+background.
+
+Focus rings are navy on light surfaces and amber on the navy ones
+(`.hero`, `.page-hero`, `.cta-band`, `.site-footer`). Don't remove `:focus-visible`
+outlines; keyboard users have nothing else to go on.
+
+### Motion
+
+`js/main.js` runs three things, each independent and each a no-op if its
+elements are absent:
+
+1. **Mobile nav** — driven by `aria-expanded` on `.nav-toggle`; closes on link
+   tap, Escape, an outside click, and on resize past 768px.
+2. **Stat count-up** — any `[data-count]` element (with optional `data-suffix`)
+   animates when scrolled into view.
+3. **Scroll reveal** — anything with `class="reveal"` fades up, staggered by
+   its position among its siblings.
+
+Two rules when editing:
+
+- Elements are hidden by `.js .reveal`, and the `js` class comes from a one-line
+  inline script in each `<head>`. Keep that script — without it, `.reveal`
+  content would stay invisible if `main.js` ever fails to load.
+- All of it honours `prefers-reduced-motion: reduce`, which shows the final
+  state instantly. Test with System Settings → Accessibility → Display →
+  Reduce Motion before adding new animation.
 
 ---
 

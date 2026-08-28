@@ -21,16 +21,26 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
+  <!-- Turns the scroll-reveal styles on, then back off at load time if main.js
+       never ran (blocked, 404, parse error) — revealed content must never be
+       left permanently invisible. Inline and before paint by design. -->
+  <script>
+    document.documentElement.classList.add('js');
+    addEventListener('load', function () {
+      if (!window.__bjc) document.documentElement.classList.remove('js');
+    });
+  </script>
+  <script src="../js/main.js" defer></script>
 </head>
 <body>
 
 <header class="site-header">
   <div class="container nav-wrap">
     <a href="../index.html" class="logo"><span class="logo-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><path d="M12 12h.01"/></svg></span> Big Jobs</a>
-    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')"><span></span><span></span><span></span></button>
-    <ul class="nav-links">
+    <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="primary-nav">
       <li><a href="../index.html">Home</a></li>
       <li><a href="about.html" class="active">About</a></li>
       <li><a href="jobs.html">Job Openings</a></li>
@@ -69,17 +79,17 @@
       <h2 class="section-title">Simple Process, Real Results</h2>
     </div>
     <div class="steps-grid">
-      <div class="service-card step-card">
+      <div class="service-card step-card reveal">
         <div class="service-icon">1</div>
         <h3>Register</h3>
         <p>Fill out a simple form with your details and upload your resume.</p>
       </div>
-      <div class="service-card step-card">
+      <div class="service-card step-card reveal">
         <div class="service-icon">2</div>
         <h3>We Match</h3>
         <p>We review your profile and match you with relevant openings from our employer network.</p>
       </div>
-      <div class="service-card step-card">
+      <div class="service-card step-card reveal">
         <div class="service-icon">3</div>
         <h3>Get Placed</h3>
         <p>Prepare, interview, and land the right role with our support at every step.</p>
@@ -96,28 +106,28 @@
       <h2 class="section-title">What Drives Us</h2>
     </div>
     <div class="reasons-grid reasons-grid--narrow">
-      <div class="reason-item">
+      <div class="reason-item reveal">
         <span class="reason-check"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
         <div>
           <h4>Integrity</h4>
           <p>No false promises. We share only verified, genuine job opportunities.</p>
         </div>
       </div>
-      <div class="reason-item">
+      <div class="reason-item reveal">
         <span class="reason-check"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
         <div>
           <h4>Respect</h4>
           <p>Every candidate — skilled or unskilled — gets the same professional treatment.</p>
         </div>
       </div>
-      <div class="reason-item">
+      <div class="reason-item reveal">
         <span class="reason-check"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
         <div>
           <h4>Accountability</h4>
           <p>We follow through on every commitment to candidates and employers alike.</p>
         </div>
       </div>
-      <div class="reason-item">
+      <div class="reason-item reveal">
         <span class="reason-check"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
         <div>
           <h4>Efficiency</h4>
